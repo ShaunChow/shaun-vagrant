@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana-web-ui
+  namespace: elastic-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: kibana.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: quickstart-kb-http
+          servicePort: 5601
