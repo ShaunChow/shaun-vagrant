@@ -2,7 +2,7 @@
 
 # Initialize Kubernetes
 echo "[TASK 1] Initialize Kubernetes Cluster"
-kubeadm init --apiserver-advertise-address=172.42.42.100 --pod-network-cidr=192.168.0.0/16 >> /root/kubeinit.log 2>/dev/null
+kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --apiserver-advertise-address=172.17.8.101 --pod-network-cidr=192.168.0.0/16 >> /root/kubeinit.log 2>/dev/null
 
 # Copy Kube admin config
 echo "[TASK 2] Copy kube admin config to Vagrant user .kube directory"
