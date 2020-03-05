@@ -1,0 +1,109 @@
+
+---
+# Source: traefik/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  labels:
+    app: traefik
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+      
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+
+      volumes:
+      - name: ssl
+        secret:
+          secretName: traefik-tls-cert
+      - name: config
+        configMap:
+          name: traefik-config
+          defaultMode: 0644
+          items:
+          - key: traefik-config.yaml
+            path: traefik-config.yaml
+
+      containers:
+      - image: traefik:2.1.6
+        name: traefik
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            cpu: "300m"
+            memory: "150Mi"
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 9000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 9000
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        ports:
+        - name: "traefik"
+          containerPort: 9000
+          protocol: TCP
+        - name: "web"
+          containerPort: 8000
+          protocol: TCP
+        - name: "websecure"
+          containerPort: 8443
+          protocol: TCP
+
+        volumeMounts:
+        - name: ssl
+          mountPath: /certs 
+        - name: config
+          mountPath: /config/traefik-config.yaml
+          subPath: traefik-config.yaml 
+
+        args:
+          - "--global.checknewversion=true"
+          - "--global.sendanonymoususage=true"
+          - "--entryPoints.traefik.address=:9000"
+          - "--entryPoints.web.address=:8000"
+          - "--entryPoints.websecure.address=:8443"
+          - "--serversTransport.insecureSkipVerify=true"
+          - "--api.dashboard=true"
+          - "--ping=true"
+          - "--providers.kubernetescrd"
+          - "--providers.kubernetesingress"
+          - "--log.level=WARN"
+          - "--api.insecure"
+          - "--accesslog"
+          # - "--metrics.prometheus=true"
+          # - "--tracing.zipkin=true"
+          # - "--certificatesresolvers.default.acme.tlschallenge"
+          # - "--certificatesresolvers.default.acme.email=uranus-neptune@hotmail.com"
+          # - "--certificatesresolvers.default.acme.storage=acme.json"
+          - "--providers.file.directory=/config"
+          - "--providers.file.filename=traefik-config.yaml"
+          - "--providers.file.watch=true"

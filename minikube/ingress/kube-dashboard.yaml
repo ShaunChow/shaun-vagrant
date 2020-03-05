@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kube-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  rules:
+  - host: dashboard.minikube.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 80

@@ -1,0 +1,5 @@
+
+image:
+  registry: dockerhub.azk8s.cn
+
+postgresqlPassword: abc123

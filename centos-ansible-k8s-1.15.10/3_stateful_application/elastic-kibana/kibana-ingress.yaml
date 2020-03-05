@@ -1,0 +1,14 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana-dashboard
+spec:
+  rules:
+  - host: kibana.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elastic-kibana-0-kb-http
+          servicePort: http

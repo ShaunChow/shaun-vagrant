@@ -1,0 +1,11 @@
+
+image:
+  repository: quay.azk8s.cn/external_storage/nfs-client-provisioner
+
+nfs:
+  server: 172.17.8.1
+  path: /Users/srv/nfs/kubedata/1.15.10
+  
+storageClass:
+  defaultClass: true
+  provisionerName: nfs.shaun.io

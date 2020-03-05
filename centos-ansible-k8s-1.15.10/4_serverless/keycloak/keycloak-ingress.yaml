@@ -1,0 +1,36 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak-web-ui
+spec:
+  tls:
+  - hosts: 
+    - keycloak.shaun.io
+    secretName: keycloak-tls
+  rules:
+  - host: keycloak.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: keycloak-http
+          servicePort: 8443
+# ---
+
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: keycloak-web-ui
+# spec:
+#   entryPoints:
+#     # - web
+#     - websecure
+#   routes:
+#   - match: Host(`keycloak.shaun.io`)
+#     kind: Rule
+#     services:
+#     - name: keycloak-http
+#       port: 8443
+#   tls:
+#     secretName: keycloak-tls

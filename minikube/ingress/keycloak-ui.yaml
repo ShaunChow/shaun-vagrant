@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak-ingress
+  namespace: keycloak
+spec:
+  rules:
+  - host: keycloak.minikube.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: keycloak-http
+          servicePort: 80

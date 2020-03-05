@@ -1,0 +1,18 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ui
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+
+  rules:
+  - host: dashboard.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: https

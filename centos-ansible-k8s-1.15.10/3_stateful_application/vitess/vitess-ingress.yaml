@@ -1,0 +1,29 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vitess-vtgate
+spec:
+  rules:
+  - host: vtgate.vitess.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vtgate-zone1
+          servicePort: web
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vitess-vtctld
+spec:
+  rules:
+  - host: vtctld.vitess.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vtctld
+          servicePort: web

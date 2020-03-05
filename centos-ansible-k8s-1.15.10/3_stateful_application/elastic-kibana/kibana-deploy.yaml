@@ -1,0 +1,17 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: elastic-kibana-0
+spec:
+  version: 7.6.1
+  count: 1
+  elasticsearchRef:
+    namespace: elastic-search
+    name: elastic-kibana-0
+
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+
+        

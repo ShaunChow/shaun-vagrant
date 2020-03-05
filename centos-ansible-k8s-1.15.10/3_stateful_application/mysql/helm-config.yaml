@@ -1,0 +1,6 @@
+mysqlRootPassword: abc123
+mysqlUser: mysql
+mysqlPassword: abc123
+mysqlDatabase: keycloak
+
+image: dockerhub.azk8s.cn/library/mysql

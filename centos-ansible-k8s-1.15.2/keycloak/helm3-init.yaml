@@ -1,0 +1,15 @@
+keycloak:
+  persistence:
+    dbVendor: postgres
+    dbHost: postgresql.postgresql.svc.cluster.local
+    dbUser: postgres
+    dbPassword: abc123
+  password: abc123
+  extraVolumeMounts: |
+    - name: keycloak-ssl
+      mountPath: /etc/x509/https
+      readOnly: true
+  extraVolumes: |
+    - name: keycloak-ssl
+      secret:
+        secretName: keycloak-tls
