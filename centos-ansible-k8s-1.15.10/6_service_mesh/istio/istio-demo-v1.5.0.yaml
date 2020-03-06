@@ -166,7 +166,7 @@ spec:
           rollingUpdate:
             maxSurge: 100%
             maxUnavailable: 25%
-  hub: docker.io/istio
+  hub: dockerhub.azk8s.cn/istio
   profile: demo
   tag: 1.5.0
   values:
@@ -446,7 +446,7 @@ spec:
         secretName: kiali
         usernameKey: username
         viewOnlyMode: false
-      hub: quay.io/kiali
+      hub: quay.azk8s.cn/kiali
       ingress:
         enabled: false
         hosts:
@@ -535,7 +535,7 @@ spec:
       traceSampling: 1
     prometheus:
       contextPath: /prometheus
-      hub: docker.io/prom
+      hub: dockerhub.azk8s.cn/prom
       ingress:
         enabled: false
         hosts:
@@ -584,7 +584,7 @@ spec:
         enabled: false
       jaeger:
         accessMode: ReadWriteMany
-        hub: docker.io/jaegertracing
+        hub: dockerhub.azk8s.cn/jaegertracing
         memory:
           max_traces: 50000
         persist: false
@@ -596,7 +596,7 @@ spec:
         exporters:
           stackdriver:
             enable_tracing: true
-        hub: docker.io/omnition
+        hub: dockerhub.azk8s.cn/omnition
         resources:
           limits:
             cpu: "1"
@@ -614,7 +614,7 @@ spec:
         name: http-query
         type: ClusterIP
       zipkin:
-        hub: docker.io/openzipkin
+        hub: dockerhub.azk8s.cn/openzipkin
         javaOptsHeap: 700
         maxSpans: 500000
         node:
