@@ -1,0 +1,59 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-prometheus
+spec:
+  rules:
+  - host: prometheus.istio.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus
+          servicePort: http-prometheus
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-kiali
+spec:
+  rules:
+  - host: kiali.istio.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kiali
+          servicePort: http-kiali
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-grafana
+spec:
+  rules:
+  - host: grafana.istio.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: http
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-jaeger
+spec:
+  rules:
+  - host: jaeger.istio.shaun.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jaeger-query
+          servicePort: query-http

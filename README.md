@@ -19,6 +19,11 @@ CA:
 
     172.17.8.104 kibana.shaun.io
 
+    172.17.8.104 prometheus.istio.shaun.io
+    172.17.8.104 kiali.istio.shaun.io
+    172.17.8.104 grafana.istio.shaun.io
+    172.17.8.104 jaeger.istio.shaun.io
+
 Helm 3
 
 Istioctl
