@@ -11,4 +11,4 @@ istioctl manifest apply \
 
 # Uninstall
 
-kubectl delete -f istio-manifest-v1.5.0.yaml
+kubectl delete -f istio-manifest-v1.5.0.yaml -n istio-system
