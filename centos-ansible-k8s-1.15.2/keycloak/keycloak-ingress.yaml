@@ -1,16 +1,11 @@
+
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: keycloak-web-ui
   namespace: keycloak
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
-  tls:
-  - hosts: 
-    - keycloak.shaun.io
-    secretName: keycloak-tls
   rules:
   - host: keycloak.shaun.io
     http:
@@ -18,4 +13,4 @@ spec:
       - path: /
         backend:
           serviceName: keycloak-http
-          servicePort: https
+          servicePort: http

@@ -1,0 +1,25 @@
+env:
+  client_ssl: "on"
+  client_ssl_cert: /etc/secrets/kong-proxy-tls/tls.crt
+  client_ssl_cert_key: /etc/secrets/kong-proxy-tls/tls.key
+  trusted_ips: 0.0.0.0/0,::/0
+  ssl_cert: /etc/secrets/kong-proxy-tls/tls.crt
+  ssl_cert_key: /etc/secrets/kong-proxy-tls/tls.key
+
+  nginx_user: root root
+
+  # proxy_listen: 0.0.0.0:8000 transparent,0.0.0.0:8443 ssl http2 transparent
+
+proxy:
+  http:
+    servicePort: 8000
+    containerPort: 8000
+  tls:
+    servicePort: 8443
+    containerPort: 8443
+
+secretVolumes:
+  - kong-proxy-tls
+
+ingressController:
+  installCRDs: false

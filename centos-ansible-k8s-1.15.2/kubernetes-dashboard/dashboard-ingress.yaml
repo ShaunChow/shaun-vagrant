@@ -4,15 +4,16 @@ kind: Ingress
 metadata:
   name: dashboard-ui
   namespace: kubernetes-dashboard
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
-
+  tls:
+  - hosts: 
+    - dashboard.shaun.io
+    secretName: kubernetes-dashboard-tls
   rules:
   - host: dashboard.shaun.io
     http:
       paths:
       - path: /
         backend:
-          serviceName: kubernetes-dashboard
+          serviceName: dashboard-kong
           servicePort: https
