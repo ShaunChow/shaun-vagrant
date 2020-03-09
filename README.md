@@ -24,6 +24,8 @@ CA:
     172.17.8.104 grafana.istio.shaun.io
     172.17.8.104 jaeger.istio.shaun.io
 
+    172.17.8.104 weave-scope.shaun.io
+
 Helm 3
 
 Istioctl

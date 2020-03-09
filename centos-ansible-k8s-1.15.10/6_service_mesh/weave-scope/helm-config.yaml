@@ -1,0 +1,12 @@
+global:
+  # global.image: the image that will be used for this release
+  image:
+    repository: dockerhub.azk8s.cn/weaveworks/scope
+
+weave-scope-frontend:
+  ingress:
+    enabled: true
+    hosts:
+      - weave-scope.shaun.io
+    paths: 
+      - /
