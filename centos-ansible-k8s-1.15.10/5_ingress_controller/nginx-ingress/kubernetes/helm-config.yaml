@@ -1,0 +1,10 @@
+controller:
+  image:
+    repository: quay.azk8s.cn/kubernetes-ingress-controller/nginx-ingress-controller
+
+  service:
+    loadBalancerIP: 172.17.8.105
+
+defaultBackend:
+  image:
+    repository: gcr.azk8s.cn/google_containers/defaultbackend-amd64
