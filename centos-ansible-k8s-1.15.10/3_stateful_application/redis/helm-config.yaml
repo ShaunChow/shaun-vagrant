@@ -1,0 +1,12 @@
+
+image: 
+  repository: dockerhub.azk8s.cn/library/redis
+
+auth: true
+
+redisPassword: abc123
+
+hardAntiAffinity: false
+
+persistentVolume:
+  size: 500Mi
