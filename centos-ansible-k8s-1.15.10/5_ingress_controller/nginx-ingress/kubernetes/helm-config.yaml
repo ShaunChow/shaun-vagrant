@@ -8,3 +8,6 @@ controller:
 defaultBackend:
   image:
     repository: gcr.azk8s.cn/google_containers/defaultbackend-amd64
+
+tcp:
+  6379: "redis-ha/redis-ha:6379"
