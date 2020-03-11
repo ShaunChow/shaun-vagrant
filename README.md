@@ -49,6 +49,9 @@ Ansiable
 
 # Docker Repository Mirror Recommand:
 
+http://mirror.azure.cn/
+
+
 dockerhub.io --> dockerhub.azk8s.cn
 quary.io --> quay.azk8s.cn
 gcr.io --> gcr.azk8s.cn
