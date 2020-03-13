@@ -28,6 +28,12 @@ CA:
 
     172.17.8.104 weave-scope.shaun.io
 
+    172.17.8.105 tcp.shaun.io
+    172.17.8.105 udp.shaun.io
+
+    tcp:
+        redis   tcp.shaun.io:6379
+
 Helm 3
 
 Istioctl
