@@ -14,6 +14,8 @@ CA:
 
     172.17.8.104 keycloak.shaun.io
 
+    172.17.8.104 rabbitmq.shaun.io
+
     172.17.8.104 vtgate.vitess.shaun.io
     172.17.8.104 vtctld.vitess.shaun.io
 
