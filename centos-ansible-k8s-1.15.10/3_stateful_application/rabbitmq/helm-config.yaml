@@ -5,3 +5,7 @@ rabbitmqUsername: guest
 rabbitmqPassword: abc123
 managementPassword: abc1234
 rabbitmqErlangCookie: abc12345
+
+ingress:
+  enabled: true
+  hostName: rabbitmq.shaun.io
