@@ -48,6 +48,12 @@ Vagrant
 
 Ansiable
 
+# Load Balance for Ingress
+
+    traefik 172.17.8.104
+    kubernetes/nginx-ingress 172.17.8.105
+    kong 172.17.8.106
+
 
 # Docker Repository Mirror Recommand:
 
