@@ -13,6 +13,8 @@ kubectl -n kong create secret generic kong-proxy-tls --from-file=certs/tls.key -
 
 ## III. Install kong via helm3
 
+helm repo add kong https://charts.konghq.com
+
 helm install kong kong/kong -n kong -f helm-config.yaml
 
 

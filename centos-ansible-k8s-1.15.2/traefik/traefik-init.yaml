@@ -116,6 +116,9 @@ metadata:
 spec:
   selector:
     k8s-app: traefik-ingress-lb
+
+  loadBalancerIP: 172.17.8.104
+
   ports:
     - protocol: TCP
       port: 80
