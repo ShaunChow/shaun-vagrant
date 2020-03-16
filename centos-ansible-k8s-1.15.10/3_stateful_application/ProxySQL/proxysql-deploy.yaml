@@ -1,0 +1,69 @@
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxysql
+  labels:
+    app: proxysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxysql
+      tier: frontend
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: proxysql
+        tier: frontend
+    spec:
+      restartPolicy: Always
+      containers:
+      - image: dockerhub.azk8s.cn/proxysql/proxysql:2.0.9
+        name: proxysql
+        volumeMounts:
+        - name: proxysql-config
+          mountPath: /etc/proxysql.cnf
+          subPath: proxysql.cnf
+        ports:
+        - containerPort: 6033
+          name: proxysql-mysql
+        - containerPort: 6032
+          name: proxysql-admin
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            cpu: "300m"
+            memory: "150Mi"
+
+
+      volumes:
+      - name: proxysql-config
+        configMap:
+          name: proxysql-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxysql
+  labels:
+    app: proxysql
+    tier: frontend
+spec:
+  ports:
+  - port: 6033
+    name: proxysql-mysql
+    targetPort: proxysql-mysql
+  - port: 6032
+    name: proxysql-admin
+    targetPort: proxysql-admin
+  selector:
+    app: proxysql
+    tier: frontend
